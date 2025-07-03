@@ -7,10 +7,10 @@
       "type": "@n8n/n8n-nodes-langchain.chatTrigger",
       "typeVersion": 1.1,
       "position": [
-        -400,
-        -200
+        -420,
+        80
       ],
-      "id": "16cc14ff-64c5-41b4-a4f9-4680f5de39b4",
+      "id": "2d80e9c2-3fab-43a6-b861-920a96a10fc5",
       "name": "When chat message received",
       "webhookId": "c2de63da-8169-408f-a6ff-17bd21568a81"
     },
@@ -23,10 +23,10 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 1.9,
       "position": [
-        -80,
-        -220
+        -100,
+        60
       ],
-      "id": "6fb9fc3c-6ed1-4b50-a8a5-f53deceb9aa3",
+      "id": "37cb989d-7b3c-400a-951f-49af81a15247",
       "name": "AI Agent"
     },
     {
@@ -55,10 +55,10 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        200,
-        -220
+        280,
+        60
       ],
-      "id": "if-node-after-agent",
+      "id": "fa334206-b3a3-42eb-9dc8-613fb522e422",
       "name": "IF"
     },
     {
@@ -73,10 +73,10 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
       "position": [
-        -160,
-        60
+        -180,
+        340
       ],
-      "id": "6f9aba05-306e-4ef0-98e1-94cfa391ca3d",
+      "id": "d0b5fd9c-b734-4c4f-b1a0-2ee87b5ef338",
       "name": "OpenAI Chat Model",
       "credentials": {
         "openAiApi": {
@@ -90,11 +90,57 @@
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.3,
       "position": [
-        -20,
-        60
+        -40,
+        340
       ],
-      "id": "b64398fa-0567-4db0-97df-14689932a44f",
+      "id": "214983cf-d6f1-45bc-aed9-86d6b609304b",
       "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "87ffb9d8-6e59-4d51-9909-59a9b51d069e",
+              "name": "durum",
+              "value": "başarılı",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        520,
+        -100
+      ],
+      "id": "c2067715-3176-46fb-b03a-e5e23f0bf033",
+      "name": "Basarili"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "f21ab6f7-8ec0-4821-9010-4192f7027937",
+              "name": "Durum",
+              "value": "Başarısız",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        500,
+        160
+      ],
+      "id": "769bfe54-abcb-4a72-9bef-9192fd0f416d",
+      "name": "Basarisiz"
     }
   ],
   "connections": {
@@ -114,6 +160,24 @@
         [
           {
             "node": "IF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF": {
+      "main": [
+        [
+          {
+            "node": "Basarili",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Basarisiz",
             "type": "main",
             "index": 0
           }
