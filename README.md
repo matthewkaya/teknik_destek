@@ -1,1 +1,1 @@
-# teknik_destek
+print("Merhaba dünya")
